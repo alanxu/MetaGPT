@@ -1,0 +1,17 @@
+# OpenRouter + Google Gemini Embedding Configuration
+# Copy this file to config2.yaml and fill in your API keys
+#
+# Full Example: https://github.com/geekan/MetaGPT/blob/main/config/config2.example.yaml
+# Reflected Code: https://github.com/geekan/MetaGPT/blob/main/metagpt/config2.py
+# Config Docs: https://docs.deepwisdom.ai/main/en/guide/get_started/configuration.html
+
+llm:
+  api_type: "openai"  # Using OpenRouter (OpenAI-compatible API)
+  model: "google/gemini-2.0-flash-001"
+  base_url: "https://openrouter.ai/api/v1"
+  api_key: "YOUR_OPENROUTER_API_KEY"
+
+# Embedding config (using Google Gemini - free)
+embedding:
+  api_type: "gemini"
+  api_key: "YOUR_GOOGLE_API_KEY"
