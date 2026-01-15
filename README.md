@@ -60,6 +60,26 @@ pip install --upgrade metagpt
 # or `git clone https://github.com/geekan/MetaGPT && cd MetaGPT && pip install --upgrade -e .`
 ```
 
+#### Installation with uv (recommended for faster installs)
+
+[uv](https://github.com/astral-sh/uv) is a fast Python package installer. To set up MetaGPT with uv:
+
+```bash
+# Create virtual environment with Python 3.11
+uv venv --python 3.11
+
+# Activate virtual environment
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+
+# Install MetaGPT in editable mode
+uv pip install -e .
+
+# Optional: Install with extras
+# uv pip install -e ".[rag]"      # For RAG features
+# uv pip install -e ".[dev]"      # For development
+# uv pip install -e ".[test]"     # For testing
+```
+
 **Install [node](https://nodejs.org/en/download) and [pnpm](https://pnpm.io/installation#using-npm) before actual use.**
 
 For detailed installation guidance, please refer to [cli_install](https://docs.deepwisdom.ai/main/en/guide/get_started/installation.html#install-stable-version)

@@ -98,7 +98,7 @@ class STAction(Action):
             except Exception as exp:
                 logger.warning(f"Action: {self.cls_name} _run_gpt35 exp: {exp}")
                 time.sleep(5)  # usually avoid `Rate limit`
-        return False
+        return self.fail_default_resp if self.fail_default_resp else False
 
     async def _run_gpt35_wo_extra_prompt(self, prompt: str, retry: int = 3) -> str:
         for idx in range(retry):

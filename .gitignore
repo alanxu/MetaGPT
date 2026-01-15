@@ -198,3 +198,11 @@ metagpt/ext/sela/results/*
 
 metagpt/ext/aflow/data
 metagpt/ext/aflow/scripts/optimized
+
+# Stanford Town simulation data (contains embeddings and runtime state)
+examples/stanford_town/storage/*/
+!examples/stanford_town/storage/base_the_ville_isabella_maria_klaus/
+examples/stanford_town/temp_storage/
+
+# Config files with API keys
+config/config2.yaml

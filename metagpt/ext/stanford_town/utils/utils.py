@@ -11,7 +11,7 @@ import time
 from pathlib import Path
 from typing import Union
 
-from openai import OpenAI
+import google.generativeai as genai
 
 from metagpt.config2 import config
 from metagpt.logs import logger
@@ -47,16 +47,26 @@ def read_csv_to_list(curr_file: str, header=False, strip_trail=True):
         return analysis_list[0], analysis_list[1:]
 
 
-def get_embedding(text, model: str = "text-embedding-ada-002"):
+def get_embedding(text, model: str = "models/text-embedding-004"):
+    """Get embedding using Google's Gemini API (configured in config2.yaml)."""
     text = text.replace("\n", " ")
     embedding = None
     if not text:
         text = "this is blank"
+
+    # Use embedding config if available, otherwise fall back to llm config
+    api_key = config.embedding.api_key if config.embedding.api_key else config.llm.api_key
+    genai.configure(api_key=api_key)
+
     for idx in range(3):
         try:
-            embedding = (
-                OpenAI(api_key=config.llm.api_key).embeddings.create(input=[text], model=model).data[0].embedding
+            result = genai.embed_content(
+                model=model,
+                content=text,
+                task_type="retrieval_document"
             )
+            embedding = result['embedding']
+            break
         except Exception as exp:
             logger.info(f"get_embedding failed, exp: {exp}, will retry.")
             time.sleep(5)

@@ -220,6 +220,9 @@ class GenPronunciatio(STAction):
 
     async def run(self, role: "STRole", act_desp: str):
         def create_prompt_input(act_desp):
+            # Handle case where act_desp might be None, False, or non-string
+            if not act_desp or not isinstance(act_desp, str):
+                act_desp = "idle"
             if "(" in act_desp:
                 act_desp = act_desp.split("(")[-1].split(")")[0]
             prompt_input = [act_desp]
